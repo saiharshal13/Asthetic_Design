@@ -1,0 +1,95 @@
+*{
+    padding:0;
+    margin:0;
+}
+
+body{
+    text-align: center;
+    background-color:aqua;
+}
+
+h1{
+    height:50px;
+    color:aqua;
+    text-align:center;
+    background-color: rgb(41, 38, 38);
+}
+
+#d1{
+    height:40px;
+    background-color: rgb(41, 38, 38);
+    color:white;
+    text-align: center;
+}
+
+.a1:hover{
+    background-color:rgb(141, 233, 176);
+}
+
+.a1{
+    margin-right: 200px;
+    text-decoration:none;
+    color:white;
+}
+
+#d2{
+    height:40px;
+    background-color:rgb(41, 38, 38); ;
+    text-align: center;
+}
+
+#d2:hover{
+    transform:scale(1.05);
+}
+
+input{
+    height:30px;
+    width:400px;
+}
+
+button{
+    background-color: #3498db;
+    height:30px;
+}
+
+/*.border{
+    width:30%;
+    height:200px;
+    display:flex;
+    gap:5px;
+}
+.border img{
+    width:10%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid white;
+    transition: all ease 1.0s;
+    cursor: pointer
+}
+.border img:hover{
+    width: 100%;
+}*/
+
+.border{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    max-width: 100%;
+    margin: 4% 4% 2% 2%;
+}
+
+.border img{
+    width:100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    transition: scale 350ms ease, opacity 350ms ease;
+}
+
+.border:has(img:hover) img:not(:hover){
+    scale:0.8;
+    opacity:0.5;
+}
+
+.border img:hover{
+    box-shadow: 0 0 5px rgb(141, 233, 176),0 0 15px rgb(141, 233, 176),0 0 50px rgb(141, 233, 176),0 0 100px rgb(141, 233, 176);
+}

@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Paint Tool</title>
+<style>
+    a{
+        margin-left: 200px;
+        margin-top: 50px;
+    text-decoration:none;
+    color:white;
+    text-align: center;
+    }
+#d1{
+    height:40px;
+    background-color: rgb(41, 38, 38);
+    color:yellow;
+    text-align: center;
+}
+.a1{
+   height:auto;
+   width:auto;
+}
+
+.a1:hover{
+    background-color:rgb(141, 233, 176);
+}
+ canvas {
+    border: 1px solid black;
+ }
+ button{
+    background-color:rgb(165, 165, 218);
+ }
+</style>
+</head>
+<body style="background-color: aqua; text-align: center;">
+    <div id="d1">
+        <a class="a1" href="MAINPAGE.html ">Home</a>
+        <a class="a1" href="painttool.html ">Edit</a>
+        <a class="a1" href="profile.html">Profile</a>
+        <a class="a1" href="setting.html">Setting</a>
+        <a class="a1" href="files.html"></a>Files</a>
+    </div>
+<h1>Paint Tool</h1>
+<canvas id="myCanvas" width="800" height="600"></canvas>
+<br>
+<button onclick="changeColor('red')">Red</button>
+<button onclick="changeColor('blue')">Blue</button>
+<button onclick="changeColor('green')">Green</button>
+<button onclick="changeColor('black')">Black</button>
+<button onclick="changeColor('white')">White</button>
+<button onclick="changeTool('brush')">Brush</button>
+<button onclick="changeTool('eraser')">Eraser</button>
+<button onclick="changeTool('rectangle')">Rectangle</button>
+<button onclick="changeTool('circle')">Circle</button>
+<button onclick="clearCanvas()">Clear</button>
+<button onclick="selectImage()">Select Image</button>
+<input type="file" id="imageLoader" name="imageLoader" style="display:none;">
+<script>
+var canvas = document.getElementById('myCanvas');
+var ctx = canvas.getContext('2d');
+ctx.fillStyle = 'white';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.strokeStyle = 'black';
+ctx.lineWidth = 2;
+
+var painting = false;
+var currentTool = 'brush';
+
+function startPosition(e) {
+    painting = true;
+    draw(e);
+}
+
+function finishedPosition() {
+    painting = false;
+    ctx.beginPath();
+}
+
+function draw(e) {
+    if (!painting) return;
+    if (currentTool === 'brush' || currentTool === 'eraser') {
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+        ctx.lineTo(e.clientX, e.clientY);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(e.clientX, e.clientY);
+    } else if (currentTool === 'rectangle') {
+        if (painting) {
+            ctx.strokeRect(e.clientX, e.clientY, e.clientX - ctx.lineWidth, e.clientY - ctx.lineWidth);
+        }
+    } else if (currentTool === 'circle') {
+        var x = e.clientX - ctx.lineWidth / 2;
+        var y = e.clientY - ctx.lineWidth / 2;
+        var radius = Math.sqrt(Math.pow(e.clientX - x, 2) + Math.pow(e.clientY - y, 2));
+        if (painting) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, 8 * Math.PI);
+            ctx.stroke();
+        }
+    }
+}
+
+canvas.addEventListener('mousedown', startPosition);
+canvas.addEventListener('mouseup', finishedPosition);
+canvas.addEventListener('mousemove', draw);
+
+function changeColor(color) {
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+}
+
+function changeTool(tool) {
+    currentTool = tool;
+}
+
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function selectImage() {
+    document.getElementById('imageLoader').click();
+}
+
+document.getElementById('imageLoader').addEventListener('change', function (e) {
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var img = new Image();
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0);
+        }
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(e.target.files[0]);
+});
+</script>
+</body>
+</html>

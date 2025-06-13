@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+    <style>
+        a{
+        margin-left: 200px;
+        margin-top: 50px;
+    text-decoration:none;
+    color:white;
+    text-align: center;
+    }
+#d1{
+    height:40px;
+    background-color: rgb(41, 38, 38);
+    color:yellow;
+    text-align: center;
+}
+.a1{
+   height:auto;
+   width:auto;
+}
+
+.a1:hover{
+    background-color:rgb(141, 233, 176);
+}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: aqua;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: rgb(141, 233, 176);;
+        }
+        .form-field {
+            margin-bottom: 20px;
+        }
+        .form-field label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-field input,
+        .form-field textarea,
+        .form-field button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-field button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-field button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <a class="a1" href="MAINPAGE.html ">Home</a>
+        <a class="a1" href="painttool.html ">Edit</a>
+        <a class="a1" href=" profile.html">Profile</a>
+        <a class="a1" href="setting.html">Setting</a>
+        <a class="a1" href="files.html">Files</a>
+    </div>
+    <div class="container">
+        <form>
+            <div class="form-field">
+                <label for="profile-pic">Profile Picture</label>
+                <input type="file" id="profile-pic" name="profile-pic">
+            </div>
+            <div class="form-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form-field">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-field">
+                <label for="bio">Bio</label>
+                <textarea id="bio" name="bio"></textarea>
+            </div>
+            <div class="form-field">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location">
+            </div>
+            <div class="form-field">
+                <button type="submit">Save Settings</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
